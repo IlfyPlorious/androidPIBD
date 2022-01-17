@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="BottomNavigation">
+        <item name="android:background">@color/primaryColor</item>
+        <item name="itemTextColor">@color/highlightColor</item>
+        <item name="itemIconTint">@color/secondaryColor</item>
+        <item name="paddingStart">5dp</item>
+        <item name="paddingEnd">5dp</item>
+    </style>
+
 </resources>

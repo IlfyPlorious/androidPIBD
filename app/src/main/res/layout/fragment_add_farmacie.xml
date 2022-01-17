@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddFarmacie">
+    android:background="@color/primaryBackground"
+    tools:context=".fragments.additional.AddFarmacie">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/addFarmacieHeroLayout"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="12dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adauga farmacie"
+            android:textColor="@color/highlightColor"
+            android:textSize="35dp"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/numeEditText"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Nume farmacie"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/addFarmacieHeroLayout"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adresaEditText"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Adresa"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/numeEditText"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/adresaEditText"
+        android:id="@+id/preparateLayout"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Ofera preparate: "
+            android:textColor="@color/highlightColor"
+            android:id="@+id/prepLabelText"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Da"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:id="@+id/prepRadioButtonDa"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nu"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:layout_marginStart="24dp"
+                android:id="@+id/prepRadioButtonNu"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/preparateLayout"
+        android:id="@+id/naturisteLayout"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Medicamente naturiste: "
+            android:textColor="@color/highlightColor"
+            android:id="@+id/natuLabelText"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Da"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:id="@+id/natRadioButtonDa"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nu"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:layout_marginStart="24dp"
+                android:id="@+id/natRadioButtonNu"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/naturisteLayout"
+        android:layout_marginTop="50dp"
+        android:id="@+id/addButton"
+        android:text="adauga"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryColor"
+        android:backgroundTint="@color/secondaryBackground"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/homeFrag"
+        android:icon="@drawable/home"
+        android:title="home"/>
+    <item
+        android:id="@+id/farmaciiFrag"
+        android:icon="@drawable/farmacie"
+        android:title="farmacii"/>
+    <item
+        android:id="@+id/clientiFrag"
+        android:icon="@drawable/client"
+        android:title="clienti"/>
+    <item
+        android:id="@+id/tranzactiiFrag"
+        android:icon="@drawable/ic_bon"
+        android:title="tranzactii"/>
 </menu>

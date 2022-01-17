@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nav">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeFrag">
 
+    <fragment
+        android:id="@+id/homeFrag"
+        android:name="com.example.portalultau.fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/farmaciiFrag"
+        android:name="com.example.portalultau.fragments.Farmacii"
+        android:label="fragment_farmacii"
+        tools:layout="@layout/fragment_farmacii" >
+        <action
+            android:id="@+id/action_farmaciiFrag_to_addFarmacie"
+            app:destination="@id/addFarmacie" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientiFrag"
+        android:name="com.example.portalultau.fragments.Clienti"
+        android:label="fragment_clienti"
+        tools:layout="@layout/fragment_clienti" />
+    <fragment
+        android:id="@+id/tranzactiiFrag"
+        android:name="com.example.portalultau.fragments.Tranzactii"
+        android:label="fragment_tranzactii"
+        tools:layout="@layout/fragment_tranzactii" />
+    <fragment
+        android:id="@+id/addFarmacie"
+        android:name="com.example.portalultau.fragments.additional.AddFarmacie"
+        android:label="fragment_add_farmacie"
+        tools:layout="@layout/fragment_add_farmacie" >
+        <action
+            android:id="@+id/action_addFarmacie_to_farmaciiFrag"
+            app:destination="@id/farmaciiFrag" />
+    </fragment>
 </navigation>
