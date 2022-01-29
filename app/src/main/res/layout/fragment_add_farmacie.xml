@@ -90,61 +90,68 @@
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:id="@+id/scrollViewAddFarmacie"
         android:layout_below="@id/preparateLayout"
-        android:id="@+id/naturisteLayout"
-        android:padding="8dp">
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Medicamente naturiste: "
-            android:textColor="@color/highlightColor"
-            android:id="@+id/natuLabelText"/>
-
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingStart="10dp"
-            >
+            android:id="@+id/naturisteLayout"
+            android:padding="8dp">
 
-            <RadioButton
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Da"
-                android:textColor="@color/highlightColor"
                 android:textSize="20dp"
-                android:id="@+id/natRadioButtonDa"
-                />
+                android:text="Medicamente naturiste: "
+                android:textColor="@color/highlightColor"
+                android:id="@+id/natuLabelText"/>
 
-            <RadioButton
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nu"
-                android:textColor="@color/highlightColor"
-                android:textSize="20dp"
-                android:layout_marginStart="24dp"
-                android:id="@+id/natRadioButtonNu"
-                />
-        </RadioGroup>
-    </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Da"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:id="@+id/natRadioButtonDa"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nu"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:layout_marginStart="24dp"
+                    android:id="@+id/natRadioButtonNu"
+                    />
+            </RadioGroup>
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <Button
+        android:id="@+id/addFarmacieButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/naturisteLayout"
+        android:layout_below="@id/scrollViewAddFarmacie"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:id="@+id/addButton"
+        android:backgroundTint="@color/secondaryBackground"
         android:text="adauga"
         android:textAllCaps="false"
-        android:textColor="@color/primaryColor"
-        android:backgroundTint="@color/secondaryBackground"
-        android:layout_centerHorizontal="true"
-        />
+        android:textColor="@color/primaryColor" />
 
 </RelativeLayout>
