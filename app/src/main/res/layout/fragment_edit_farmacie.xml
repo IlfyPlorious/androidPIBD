@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.additional.EditFarmacie"
+    android:background="@color/primaryBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editFarmacieHeroLayout"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editeaza farmacie"
+            android:textColor="@color/highlightColor"
+            android:textSize="35dp"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNumeEditText"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Nume farmacie"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/editFarmacieHeroLayout"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editAdresaEditText"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Adresa"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/editNumeEditText"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/editAdresaEditText"
+        android:id="@+id/editPreparateLayout"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Ofera preparate: "
+            android:textColor="@color/highlightColor"
+            android:id="@+id/editPrepLabelText"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Da"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:id="@+id/editPrepRadioButtonDa"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nu"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:layout_marginStart="24dp"
+                android:id="@+id/editPrepRadioButtonNu"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollViewEditFarmacie"
+        android:layout_below="@id/editPreparateLayout"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/editNaturisteLayout"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Medicamente naturiste: "
+                android:textColor="@color/highlightColor"
+                android:id="@+id/editNatuLabelText"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Da"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:id="@+id/editNatRadioButtonDa"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nu"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:layout_marginStart="24dp"
+                    android:id="@+id/editNatRadioButtonNu"
+                    />
+            </RadioGroup>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/editFarmacieButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scrollViewEditFarmacie"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/secondaryBackground"
+        android:text="Salveaza"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryColor" />
+
+</RelativeLayout>

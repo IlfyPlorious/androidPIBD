@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ import java.util.stream.Stream;
 
 public class Farmacii extends Fragment {
 
-    private ImageButton addFarmacie;
+    private ImageButton addFarmacie, reloadBtn;
     private NavController navController;
     private SearchView searchView;
     private TextView heroLabel;
@@ -76,6 +77,7 @@ public class Farmacii extends Fragment {
         searchView = view.findViewById(R.id.searchFarmacii);
         heroLabel = view.findViewById(R.id.farmacieHeroText);
         addFarmacie = view.findViewById(R.id.addFarmacie);
+        reloadBtn = view.findViewById(R.id.reloadFarmaciiButton);
 
         if ( getActivity() != null ){
             navController = Navigation.findNavController(getActivity(), R.id.fragmentContainer);
@@ -90,8 +92,8 @@ public class Farmacii extends Fragment {
 
         addFarmacie.setOnClickListener(view12 -> navController.navigate(R.id.action_farmaciiFrag_to_addFarmacie));
 
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         searchView.setOnSearchClickListener(view1 -> heroLabel.setVisibility(View.INVISIBLE));
-
         searchView.setOnCloseListener(() -> {
             heroLabel.setVisibility(View.VISIBLE);
             return false;
@@ -103,11 +105,18 @@ public class Farmacii extends Fragment {
                 return false;
             }
 
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
                 return false;
             }
+        });
+
+        reloadBtn.setOnClickListener(view13 -> {
+            farmaciiList = comm.citesteFarmacii();
+            adapter.updateDataSet(farmaciiList);
+            Toast.makeText(getContext(), "Lista de farmacii a fost actualizata", Toast.LENGTH_SHORT).show();
+            recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         });
 
         return view;

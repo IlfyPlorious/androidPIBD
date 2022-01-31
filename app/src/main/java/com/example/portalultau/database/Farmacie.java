@@ -96,4 +96,11 @@ public class Farmacie extends RealmObject {
         return false;
     }
 
+    public void copyFarmacieData(String nume, String adresa, Boolean oferaPreparate, Boolean medicamenteNaturiste){
+        this.nume = nume;
+        this.adresa = adresa;
+        this.oferaPreparate = oferaPreparate;
+        this.medicamenteNaturiste = medicamenteNaturiste;
+    }
+
 }

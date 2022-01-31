@@ -93,6 +93,15 @@ public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRU
     }
 
     @Override
+    public void updateFarmacie(Farmacie farmacie) {
+        backgroundThreadRealm.executeTransaction(transaction -> {
+            Farmacie farmacieToEdit = transaction.where(Farmacie.class).equalTo("_id", farmacie.getId()).findFirst();
+            if ( farmacieToEdit != null )
+                farmacieToEdit.copyFarmacieData(farmacie.getNume(), farmacie.getAdresa(), farmacie.getOferaPreparate(), farmacie.getMedicamenteNaturiste());
+        });
+    }
+
+    @Override
     public ArrayList<Farmacie> citesteFarmacii() {
         // all tasks in the realm
         RealmResults<Farmacie> farmacii = backgroundThreadRealm.where(Farmacie.class).findAll();
@@ -113,5 +122,18 @@ public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRU
             if (toDelete != null)
                 toDelete.deleteFromRealm();
         });
+        Toast.makeText(this, "Farmacia a fost stearsa", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void editFarmacie(Farmacie farmacie) {
+
+        Bundle arguments = new Bundle();
+        arguments.putString("id", farmacie.getId().toString());
+        arguments.putString("nume", farmacie.getNume());
+        arguments.putString("adresa", farmacie.getAdresa());
+        arguments.putBoolean("preparate", farmacie.getOferaPreparate());
+        arguments.putBoolean("naturiste", farmacie.getMedicamenteNaturiste());
+        navController.navigate(R.id.action_farmaciiFrag_to_editFarmacie, arguments);
     }
 }

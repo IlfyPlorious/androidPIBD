@@ -20,53 +20,62 @@ import android.widget.Toast;
 import com.example.portalultau.R;
 import com.example.portalultau.database.Farmacie;
 
+import org.bson.types.ObjectId;
+
 import io.realm.Realm;
 import io.realm.mongodb.sync.SyncConfiguration;
 
 /*
-    @author Sandu Dragos
+    @author Sandu Dragos 433A
  */
-public class AddFarmacie extends Fragment {
+public class EditFarmacie extends Fragment {
 
     private RadioButton prepDa, prepNu, natDa, natNu;
     private EditText nume, adresa;
     private Button adaugaButton;
-    private Realm backgroundThreadRealm;
-    private SyncConfiguration syncConfig;
-    private onCRUDFarmacieOperation CRUDFarmacieOperation;
+    private AddFarmacie.onCRUDFarmacieOperation CRUDFarmacieOperation;
     private String numeToInsert, adresaToInsert;
     private boolean preparate, naturiste;
     private NavController navController;
+    private String numeArg, adresaArg, idArg;
+    private Boolean preparateArg, naturisteArg;
 
-    public AddFarmacie() {
+    public EditFarmacie() {
         // Required empty public constructor
     }
 
-    public static AddFarmacie newInstance() {
-        AddFarmacie fragment = new AddFarmacie();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+    public static EditFarmacie newInstance() {
+        EditFarmacie fragment = new EditFarmacie();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            idArg = getArguments().getString("id");
+            numeArg = getArguments().getString("nume");
+            adresaArg = getArguments().getString("adresa");
+            preparateArg = getArguments().getBoolean("preparate");
+            naturisteArg = getArguments().getBoolean("naturiste");
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_farmacie, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_farmacie, container, false);
 
-        CRUDFarmacieOperation = (onCRUDFarmacieOperation) getActivity();
-        prepDa = view.findViewById(R.id.prepRadioButtonDa);
-        prepNu = view.findViewById(R.id.prepRadioButtonNu);
-        natDa = view.findViewById(R.id.natRadioButtonDa);
-        natNu = view.findViewById(R.id.natRadioButtonNu);
-        adaugaButton = view.findViewById(R.id.addFarmacieButton);
-        nume = view.findViewById(R.id.numeEditText);
-        adresa = view.findViewById(R.id.adresaEditText);
+        CRUDFarmacieOperation = (AddFarmacie.onCRUDFarmacieOperation) getActivity();
+        prepDa = view.findViewById(R.id.editPrepRadioButtonDa);
+        prepNu = view.findViewById(R.id.editPrepRadioButtonNu);
+        natDa = view.findViewById(R.id.editNatRadioButtonDa);
+        natNu = view.findViewById(R.id.editNatRadioButtonNu);
+        adaugaButton = view.findViewById(R.id.editFarmacieButton);
+        nume = view.findViewById(R.id.editNumeEditText);
+        adresa = view.findViewById(R.id.editAdresaEditText);
+
+        initializeHints();
 
         if ( getActivity() != null ){
             navController = Navigation.findNavController(getActivity(), R.id.fragmentContainer);
@@ -149,9 +158,13 @@ public class AddFarmacie extends Fragment {
 
                 try {
                     farmacie = new Farmacie(numeToInsert, adresaToInsert, preparate, naturiste);
-                    Toast.makeText(getContext(),"Farmacie adaugata cu succes ", Toast.LENGTH_SHORT).show();
-                    CRUDFarmacieOperation.insertFarmacie(farmacie);
-                    navController.navigate(R.id.action_addFarmacie_to_farmaciiFrag);
+                    if ( idArg != null ) {
+                        ObjectId newId = new ObjectId(idArg);
+                        farmacie.setId(newId);
+                    }
+                    Toast.makeText(getContext(),"Farmacie editata cu succes ", Toast.LENGTH_SHORT).show();
+                    CRUDFarmacieOperation.updateFarmacie(farmacie);
+                    navController.navigate(R.id.action_editFarmacie_to_farmaciiFrag);
                 } catch (IllegalArgumentException e){
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e){
@@ -164,8 +177,24 @@ public class AddFarmacie extends Fragment {
         return view;
     }
 
-    public interface onCRUDFarmacieOperation{
-        void insertFarmacie(Farmacie farmacie);
-        void updateFarmacie(Farmacie farmacie);
+    private void initializeHints() {
+        if ( numeArg != null ) {
+            nume.setText(numeArg);
+            numeToInsert = numeArg;
+        }
+        if ( adresaArg != null ) {
+            adresa.setText(adresaArg);
+            adresaToInsert = adresaArg;
+        }
+        if ( preparateArg != null ) {
+            prepDa.setChecked(preparateArg);
+            prepNu.setChecked(!preparateArg);
+            preparate = preparateArg;
+        }
+        if ( naturisteArg != null ){
+            natDa.setChecked(naturisteArg);
+            natNu.setChecked(!naturisteArg);
+            naturiste = naturisteArg;
+        }
     }
 }

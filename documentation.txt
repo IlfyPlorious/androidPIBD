@@ -1,0 +1,24 @@
+﻿    1. MongoDB realm setup documentation
+    • gradle config
+    • atlas, realm, partition
+    2. MongoDB schemas config docu
+    3. MongoDB CRUD operation documentation
+    4. Bottom nav docu
+    • menu xml
+    5. NavigationComponent
+    • coding in flow
+    • official documentation
+    6. Fragment interface listeners
+    • stackoverflow
+    7. Recyclerview
+    • official documentation
+    • coding in flow
+    • filter function
+    • serchview documentation
+8. Expanding item in recyclerview
+https://medium.com/@nikola.jakshic/how-to-expand-collapse-items-in-recyclerview-49a648a403a6
+9. how to set app icon with image asset
+	
+
+
+

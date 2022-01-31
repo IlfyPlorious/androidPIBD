@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.Home">
+    tools:context=".fragments.Home"
+    android:background="@color/primaryBackground">
 
     <RelativeLayout
         android:layout_height="wrap_content"
@@ -20,11 +21,156 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:padding="9dp"
             android:text="Home"
-            android:padding="8dp"
             android:textColor="@color/highlightColor"
             android:textSize="35dp" />
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topLayoutHome">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/heroHomeImg"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/hero_home"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/heroHomeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/heroHomeImg"
+                android:padding="15dp"
+                android:text="Aplicatie de gestiune a bazei de date pentru farmacii, clienti si tranzactii \n\nSandu Dragos 433A PIBD 2022"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Functionalitati:"
+                android:textSize="20dp"
+                android:textColor="@color/highlightColor"
+                android:layout_below="@id/heroHomeTxt"
+                android:id="@+id/funcLabelTxtHome"
+                android:padding="15dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/featuresHomeLayout"
+                android:layout_below="@id/funcLabelTxtHome"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp"
+                        android:padding="15dp"
+                        android:text="\u25CF Create"
+                        android:textColor="@color/highlightColor"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/add_button"
+                        android:backgroundTint="@color/highlightColor"
+                        android:scaleX="2"
+                        android:scaleY="2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="30dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u25CF Edit"
+                        android:textColor="@color/highlightColor"
+                        android:textSize="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp"
+                        android:padding="15dp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/ic_baseline_edit_24"
+                        android:backgroundTint="@color/highlightColor"
+                        android:scaleX="2"
+                        android:scaleY="2" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="30dp"
+                        android:padding="15dp"
+                        android:text="\u25CF Remove"
+                        android:textColor="@color/highlightColor"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/remove_icon"
+                        android:backgroundTint="@color/highlightColor"
+                        android:scaleX="2"
+                        android:scaleY="2" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/featuresHomeLayout"
+                android:padding="15dp"
+                android:text="Utilizati bara din josul ecranului pentru navigare \u2193 \u2193 \u2193"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/farmacie_item.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_add_farmacie.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_clienti.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/fragment_edit_farmacie.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_farmacii.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_tranzactii.xml" value="0.35" />

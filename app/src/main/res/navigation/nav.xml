@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_farmaciiFrag_to_addFarmacie"
             app:destination="@id/addFarmacie" />
+        <action
+            android:id="@+id/action_farmaciiFrag_to_editFarmacie"
+            app:destination="@id/editFarmacie" />
     </fragment>
     <fragment
         android:id="@+id/clientiFrag"
@@ -36,6 +39,15 @@
         tools:layout="@layout/fragment_add_farmacie" >
         <action
             android:id="@+id/action_addFarmacie_to_farmaciiFrag"
+            app:destination="@id/farmaciiFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFarmacie"
+        android:name="com.example.portalultau.fragments.additional.EditFarmacie"
+        android:label="fragment_edit_farmacie"
+        tools:layout="@layout/fragment_edit_farmacie" >
+        <action
+            android:id="@+id/action_editFarmacie_to_farmaciiFrag"
             app:destination="@id/farmaciiFrag" />
     </fragment>
 </navigation>
