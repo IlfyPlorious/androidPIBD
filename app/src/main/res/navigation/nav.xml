@@ -26,7 +26,14 @@
         android:id="@+id/clientiFrag"
         android:name="com.example.portalultau.fragments.Clienti"
         android:label="fragment_clienti"
-        tools:layout="@layout/fragment_clienti" />
+        tools:layout="@layout/fragment_clienti" >
+        <action
+            android:id="@+id/action_clientiFrag_to_addClientFrag"
+            app:destination="@id/addClientFrag" />
+        <action
+            android:id="@+id/action_clientiFrag_to_editClient"
+            app:destination="@id/editClient" />
+    </fragment>
     <fragment
         android:id="@+id/tranzactiiFrag"
         android:name="com.example.portalultau.fragments.Tranzactii"
@@ -49,5 +56,23 @@
         <action
             android:id="@+id/action_editFarmacie_to_farmaciiFrag"
             app:destination="@id/farmaciiFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/addClientFrag"
+        android:name="com.example.portalultau.fragments.additional.AddClient"
+        android:label="fragment_add_client"
+        tools:layout="@layout/fragment_add_client" >
+        <action
+            android:id="@+id/action_addClientFrag_to_clientiFrag"
+            app:destination="@id/clientiFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/editClient"
+        android:name="com.example.portalultau.fragments.additional.EditClient"
+        android:label="fragment_edit_client"
+        tools:layout="@layout/fragment_edit_client" >
+        <action
+            android:id="@+id/action_editClient_to_clientiFrag"
+            app:destination="@id/clientiFrag" />
     </fragment>
 </navigation>

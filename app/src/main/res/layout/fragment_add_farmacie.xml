@@ -24,27 +24,28 @@
     </RelativeLayout>
 
     <EditText
+        android:id="@+id/numeEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/numeEditText"
-        android:textColorHint="#afafaf"
-        android:textColor="@color/highlightColor"
-        android:hint="Nume farmacie"
-        android:textSize="20dp"
-        android:padding="8dp"
         android:layout_below="@id/addFarmacieHeroLayout"
-        />
+        android:hint="Nume farmacie"
+        android:inputType="textCapWords"
+        android:padding="8dp"
+        android:textColor="@color/highlightColor"
+        android:textColorHint="#afafaf"
+        android:textSize="20dp" />
 
     <EditText
+        android:id="@+id/adresaEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/adresaEditText"
-        android:textColorHint="#afafaf"
-        android:textColor="@color/highlightColor"
+        android:layout_below="@id/numeEditText"
         android:hint="Adresa"
-        android:textSize="20dp"
+        android:inputType="textCapWords"
         android:padding="8dp"
-        android:layout_below="@id/numeEditText"/>
+        android:textColor="@color/highlightColor"
+        android:textColorHint="#afafaf"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

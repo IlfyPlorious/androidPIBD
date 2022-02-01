@@ -53,7 +53,7 @@ public class Farmacii extends Fragment {
         // Required empty public constructor
     }
 
-    public static Farmacii newInstance(String param1, String param2) {
+    public static Farmacii newInstance() {
         Farmacii fragment = new Farmacii();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -63,8 +63,6 @@ public class Farmacii extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -116,9 +114,16 @@ public class Farmacii extends Fragment {
             farmaciiList = comm.citesteFarmacii();
             adapter.updateDataSet(farmaciiList);
             Toast.makeText(getContext(), "Lista de farmacii a fost actualizata", Toast.LENGTH_SHORT).show();
-            recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            if (adapter.getItemCount() - 1 > 0)
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         });
 
         return view;
+    }
+
+    public interface onCRUDFarmacieOperation{
+        void insertFarmacie(Farmacie farmacie);
+        void updateFarmacie(Farmacie farmacie);
+        void deleteFarmacie(Farmacie farmacie);
     }
 }

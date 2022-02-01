@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.portalultau.R;
 import com.example.portalultau.database.Farmacie;
 import com.example.portalultau.fragments.Farmacii;
+import com.example.portalultau.fragments.additional.AddFarmacie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +35,9 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
     private ArrayList<Farmacie> localDataSet;
     private ArrayList<Farmacie> fullDataSet;
     private farmaciiRecyclerViewButtonControl buttonControl;
+    private Farmacii.onCRUDFarmacieOperation crudOp;
 
     public interface farmaciiRecyclerViewButtonControl{
-        void deleteFarmacie(Farmacie farmacie);
         void editFarmacie(Farmacie farmacie);
     }
 
@@ -61,6 +62,7 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
         localDataSet = dataSet;
         fullDataSet = new ArrayList<>(dataSet);
         buttonControl = (farmaciiRecyclerViewButtonControl) activity;
+        crudOp = (Farmacii.onCRUDFarmacieOperation) activity;
     }
 
     @Override
@@ -78,7 +80,7 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
         viewHolder.adresa.setText(localDataSet.get(position).getAdresa());
         viewHolder.deleteButton.setOnClickListener(view -> {
             fullDataSet.remove(localDataSet.get(position));
-            buttonControl.deleteFarmacie(localDataSet.get(position));
+            crudOp.deleteFarmacie(localDataSet.get(position));
             localDataSet.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, localDataSet.size());

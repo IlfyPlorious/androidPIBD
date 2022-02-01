@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.portalultau.database.Client;
+import com.example.portalultau.fragments.Clienti;
 import com.example.portalultau.fragments.Farmacii;
 import com.example.portalultau.fragments.additional.AddFarmacie;
 import com.example.portalultau.database.Farmacie;
+import com.example.portalultau.recyclerviews.ClientiRecyclerView;
 import com.example.portalultau.recyclerviews.FarmaciiRecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,7 +36,7 @@ import io.realm.mongodb.sync.SyncConfiguration;
     @author Sandu Dragos
  */
 
-public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRUDFarmacieOperation, Farmacii.farmaciiRealmComm, FarmaciiRecyclerView.farmaciiRecyclerViewButtonControl {
+public class MainActivity extends AppCompatActivity implements Farmacii.onCRUDFarmacieOperation, Farmacii.farmaciiRealmComm, FarmaciiRecyclerView.farmaciiRecyclerViewButtonControl, ClientiRecyclerView.clientiRecyclerViewButtonControl, Clienti.clientiRealmComm, Clienti.crudClientiOperations {
 
     private BottomNavigationView bottomNav;
     private NavController navController;
@@ -94,11 +97,15 @@ public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRU
 
     @Override
     public void updateFarmacie(Farmacie farmacie) {
-        backgroundThreadRealm.executeTransaction(transaction -> {
-            Farmacie farmacieToEdit = transaction.where(Farmacie.class).equalTo("_id", farmacie.getId()).findFirst();
-            if ( farmacieToEdit != null )
-                farmacieToEdit.copyFarmacieData(farmacie.getNume(), farmacie.getAdresa(), farmacie.getOferaPreparate(), farmacie.getMedicamenteNaturiste());
-        });
+       try{
+           backgroundThreadRealm.executeTransaction(transaction -> {
+               Farmacie farmacieToEdit = transaction.where(Farmacie.class).equalTo("_id", farmacie.getId()).findFirst();
+               if ( farmacieToEdit != null )
+                   farmacieToEdit.copyFarmacieData(farmacie.getNume(), farmacie.getAdresa(), farmacie.getOferaPreparate(), farmacie.getMedicamenteNaturiste());
+           });
+       } catch (Exception e){
+           Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+       }
     }
 
     @Override
@@ -117,17 +124,20 @@ public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRU
     @Override
     public void deleteFarmacie(Farmacie farmacie) {
         ObjectId farmacieId = farmacie.getId();
-        backgroundThreadRealm.executeTransaction(transactionRealm -> {
-            Farmacie toDelete = transactionRealm.where(Farmacie.class).equalTo("_id", farmacieId).findFirst();
-            if (toDelete != null)
-                toDelete.deleteFromRealm();
-        });
-        Toast.makeText(this, "Farmacia a fost stearsa", Toast.LENGTH_SHORT).show();
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                Farmacie toDelete = transactionRealm.where(Farmacie.class).equalTo("_id", farmacieId).findFirst();
+                if (toDelete != null)
+                    toDelete.deleteFromRealm();
+            });
+            Toast.makeText(this, "Farmacia a fost stearsa", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void editFarmacie(Farmacie farmacie) {
-
         Bundle arguments = new Bundle();
         arguments.putString("id", farmacie.getId().toString());
         arguments.putString("nume", farmacie.getNume());
@@ -135,5 +145,76 @@ public class MainActivity extends AppCompatActivity implements AddFarmacie.onCRU
         arguments.putBoolean("preparate", farmacie.getOferaPreparate());
         arguments.putBoolean("naturiste", farmacie.getMedicamenteNaturiste());
         navController.navigate(R.id.action_farmaciiFrag_to_editFarmacie, arguments);
+    }
+
+    @Override
+    public void insertClient(Client client) {
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                transactionRealm.insert(client);
+            });
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la incarcare in baza de date: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void updateClient(Client client) {
+        try{
+            backgroundThreadRealm.executeTransaction(transaction -> {
+                Client clientToEdit = transaction.where(Client.class).equalTo("_id", client.get_id()).findFirst();
+                if ( clientToEdit != null )
+                    clientToEdit.copyClientData(client.getNume(), client.getPrenume(), client.getAdresa(), client.getContact(), client.getVarsta(), client.getAbonamentPremium());
+            });
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void deleteClient(Client client) {
+        ObjectId clientId = client.get_id();
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                Client toDelete = transactionRealm.where(Client.class).equalTo("_id", clientId).findFirst();
+                if (toDelete != null)
+                    toDelete.deleteFromRealm();
+            });
+            Toast.makeText(this, "Clientul a fost sters", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void editClient(Client client) {
+        Bundle arguments = new Bundle();
+        arguments.putString("id", client.get_id().toString());
+        arguments.putString("nume", client.getNume());
+        arguments.putString("prenume", client.getPrenume());
+        arguments.putString("adresa", client.getAdresa());
+        arguments.putString("contact", client.getContact());
+        arguments.putBoolean("premium", client.getAbonamentPremium());
+        arguments.putInt("varsta", client.getVarsta());
+        navController.navigate(R.id.action_clientiFrag_to_editClient, arguments);
+    }
+
+    @Override
+    public void updateExpand(Client client) {
+        Boolean expanded = client.getExpanded();
+        try{
+            backgroundThreadRealm.executeTransaction(transaction -> {
+                Client clientToEdit = transaction.where(Client.class).equalTo("_id", client.get_id()).findFirst();
+                clientToEdit.setExpanded(!expanded);
+            });
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public ArrayList<Client> citesteClienti() {
+        RealmResults<Client> clienti = backgroundThreadRealm.where(Client.class).findAll();
+        return new ArrayList<>(clienti);
     }
 }

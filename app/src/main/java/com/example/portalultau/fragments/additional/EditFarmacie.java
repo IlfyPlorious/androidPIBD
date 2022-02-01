@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.portalultau.R;
 import com.example.portalultau.database.Farmacie;
+import com.example.portalultau.fragments.Farmacii;
 
 import org.bson.types.ObjectId;
 
@@ -33,7 +34,7 @@ public class EditFarmacie extends Fragment {
     private RadioButton prepDa, prepNu, natDa, natNu;
     private EditText nume, adresa;
     private Button adaugaButton;
-    private AddFarmacie.onCRUDFarmacieOperation CRUDFarmacieOperation;
+    private Farmacii.onCRUDFarmacieOperation CRUDFarmacieOperation;
     private String numeToInsert, adresaToInsert;
     private boolean preparate, naturiste;
     private NavController navController;
@@ -66,7 +67,7 @@ public class EditFarmacie extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_farmacie, container, false);
 
-        CRUDFarmacieOperation = (AddFarmacie.onCRUDFarmacieOperation) getActivity();
+        CRUDFarmacieOperation = (Farmacii.onCRUDFarmacieOperation) getActivity();
         prepDa = view.findViewById(R.id.editPrepRadioButtonDa);
         prepNu = view.findViewById(R.id.editPrepRadioButtonNu);
         natDa = view.findViewById(R.id.editNatRadioButtonDa);
@@ -162,9 +163,9 @@ public class EditFarmacie extends Fragment {
                         ObjectId newId = new ObjectId(idArg);
                         farmacie.setId(newId);
                     }
-                    Toast.makeText(getContext(),"Farmacie editata cu succes ", Toast.LENGTH_SHORT).show();
                     CRUDFarmacieOperation.updateFarmacie(farmacie);
                     navController.navigate(R.id.action_editFarmacie_to_farmaciiFrag);
+                    Toast.makeText(getContext(),"Farmacie editata cu succes ", Toast.LENGTH_SHORT).show();
                 } catch (IllegalArgumentException e){
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e){
@@ -197,4 +198,6 @@ public class EditFarmacie extends Fragment {
             naturiste = naturisteArg;
         }
     }
+
+
 }

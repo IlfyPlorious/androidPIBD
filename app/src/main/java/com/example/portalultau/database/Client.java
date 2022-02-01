@@ -19,6 +19,7 @@ public class Client extends RealmObject {
     private String contact;
     private int varsta;
     private Boolean abonamentPremium;
+    private Boolean isExpanded = false;
 
     public Client(){
 
@@ -31,12 +32,18 @@ public class Client extends RealmObject {
     }
 
     public Client(String nume, String prenume, String adresa, String contact, int varsta, Boolean abonamentPremium) {
-        this.nume = nume;
-        this.prenume = prenume;
-        this.adresa = adresa;
-        this.contact = contact;
-        this.varsta = varsta;
-        this.abonamentPremium = abonamentPremium;
+        if ( nume.equals("") || nume == null || nume.length() < 3) throw new IllegalArgumentException("Nume introdus invalid");
+        else this.nume = nume;
+        if ( prenume.equals("") || prenume == null || prenume.length() < 3) throw new IllegalArgumentException("Prenume introdus invalid");
+        else this.prenume = prenume;
+        if ( adresa.equals("") || adresa == null || adresa.length() < 3) throw new IllegalArgumentException("Adresa introdusa invalida");
+        else this.adresa = adresa;
+        if ( contact.equals("") || contact == null || contact.length() < 3) throw new IllegalArgumentException("Contact introdus invalid");
+        else this.contact = contact;
+        if (varsta <= 0 || varsta > 150 ) throw new IllegalArgumentException("Varsta introdusa invalida");
+        else this.varsta = varsta;
+        if (abonamentPremium == null) throw new IllegalArgumentException("Va rog sa selectati starea abonamentului premium");
+        else this.abonamentPremium = abonamentPremium;
     }
 
     public ObjectId get_id() {
@@ -113,6 +120,23 @@ public class Client extends RealmObject {
     }
 
     public void setAbonamentPremium(Boolean abonamentPremium) {
+        this.abonamentPremium = abonamentPremium;
+    }
+
+    public Boolean getExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(Boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    public void copyClientData(String nume, String prenume, String adresa, String contact, int varsta, Boolean abonamentPremium){
+        this.nume = nume;
+        this.prenume = prenume;
+        this.adresa = adresa;
+        this.contact = contact;
+        this.varsta = varsta;
         this.abonamentPremium = abonamentPremium;
     }
 }

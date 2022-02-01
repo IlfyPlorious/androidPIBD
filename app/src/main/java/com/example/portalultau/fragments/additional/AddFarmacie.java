@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.portalultau.R;
 import com.example.portalultau.database.Farmacie;
+import com.example.portalultau.fragments.Farmacii;
 
 import io.realm.Realm;
 import io.realm.mongodb.sync.SyncConfiguration;
@@ -31,9 +32,7 @@ public class AddFarmacie extends Fragment {
     private RadioButton prepDa, prepNu, natDa, natNu;
     private EditText nume, adresa;
     private Button adaugaButton;
-    private Realm backgroundThreadRealm;
-    private SyncConfiguration syncConfig;
-    private onCRUDFarmacieOperation CRUDFarmacieOperation;
+    private Farmacii.onCRUDFarmacieOperation CRUDFarmacieOperation;
     private String numeToInsert, adresaToInsert;
     private boolean preparate, naturiste;
     private NavController navController;
@@ -59,7 +58,7 @@ public class AddFarmacie extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_farmacie, container, false);
 
-        CRUDFarmacieOperation = (onCRUDFarmacieOperation) getActivity();
+        CRUDFarmacieOperation = (Farmacii.onCRUDFarmacieOperation) getActivity();
         prepDa = view.findViewById(R.id.prepRadioButtonDa);
         prepNu = view.findViewById(R.id.prepRadioButtonNu);
         natDa = view.findViewById(R.id.natRadioButtonDa);
@@ -68,14 +67,14 @@ public class AddFarmacie extends Fragment {
         nume = view.findViewById(R.id.numeEditText);
         adresa = view.findViewById(R.id.adresaEditText);
 
-        if ( getActivity() != null ){
+        if (getActivity() != null) {
             navController = Navigation.findNavController(getActivity(), R.id.fragmentContainer);
         }
 
         prepDa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (prepDa.isChecked()){
+                if (prepDa.isChecked()) {
                     preparate = true;
                 }
             }
@@ -84,7 +83,7 @@ public class AddFarmacie extends Fragment {
         prepNu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( prepNu.isChecked() ){
+                if (prepNu.isChecked()) {
                     preparate = false;
                 }
             }
@@ -93,7 +92,7 @@ public class AddFarmacie extends Fragment {
         natNu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( natNu.isChecked() ){
+                if (natNu.isChecked()) {
                     naturiste = false;
                 }
             }
@@ -102,7 +101,7 @@ public class AddFarmacie extends Fragment {
         natDa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( natDa.isChecked() ){
+                if (natDa.isChecked()) {
                     naturiste = true;
                 }
             }
@@ -149,23 +148,18 @@ public class AddFarmacie extends Fragment {
 
                 try {
                     farmacie = new Farmacie(numeToInsert, adresaToInsert, preparate, naturiste);
-                    Toast.makeText(getContext(),"Farmacie adaugata cu succes ", Toast.LENGTH_SHORT).show();
                     CRUDFarmacieOperation.insertFarmacie(farmacie);
                     navController.navigate(R.id.action_addFarmacie_to_farmaciiFrag);
-                } catch (IllegalArgumentException e){
+                    Toast.makeText(getContext(), "Farmacie adaugata cu succes ", Toast.LENGTH_SHORT).show();
+                } catch (IllegalArgumentException e) {
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                } catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(getContext(), "Eroare:" + e.toString(), Toast.LENGTH_SHORT).show();
-                    Log.d("adaugare", e.toString());
+                    Log.d("adaugare farmacie", e.getMessage());
                 }
             }
         });
 
         return view;
-    }
-
-    public interface onCRUDFarmacieOperation{
-        void insertFarmacie(Farmacie farmacie);
-        void updateFarmacie(Farmacie farmacie);
     }
 }

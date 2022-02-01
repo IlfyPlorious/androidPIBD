@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.portalultau.R;
 
@@ -22,7 +23,7 @@ import com.example.portalultau.R;
 
 public class Tranzactii extends Fragment {
 
-    private ImageButton addTranzactie;
+    private ImageButton addTranzactie, reloadBtn;
     private NavController navController;
     private SearchView searchView;
     private TextView heroLabel;
@@ -79,6 +80,14 @@ public class Tranzactii extends Fragment {
                 return false;
             }
         });
+
+//        reloadBtn.setOnClickListener(view13 -> {
+//            tranzactiiList = comm.citesteTranzactii();
+//            adapter.updateDataSet(tranzactiiList);
+//            Toast.makeText(getContext(), "Lista de tranzactii a fost actualizata", Toast.LENGTH_SHORT).show();
+//            if (adapter.getItemCount() - 1 > 0)
+//                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+//        });
 
         return view;
     }

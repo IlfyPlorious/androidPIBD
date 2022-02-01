@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primaryBackground"
     tools:context=".fragments.Tranzactii">
 
     <RelativeLayout
@@ -29,23 +30,36 @@
             android:id="@+id/addTranzactii"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/reloadTranzactiiButton"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/add_button"
             android:backgroundTint="@color/highlightColor"
             android:padding="10dp"
-            android:layout_margin="20dp"
             />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchTranzactii"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/addTranzactii"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/addTranzactii"
             app:queryBackground="@color/highlightColor"
             app:searchIcon="@drawable/ic_baseline_search_24"
-            android:layout_centerVertical="true"
             />
+
+        <ImageButton
+            android:id="@+id/reloadTranzactiiButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_baseline_replay_24" />
 
     </RelativeLayout>
 

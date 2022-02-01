@@ -22,14 +22,14 @@
             >
 
             <TextView
+                android:id="@+id/numeItemFarmacie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nume"
-                android:id="@+id/numeItemFarmacie"
-                android:textSize="30dp"
-                android:textColor="@color/primaryColor"
                 android:layout_alignParentTop="true"
-                />
+                android:text="Nume"
+                android:padding="8dp"
+                android:textColor="@color/primaryColor"
+                android:textSize="30dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -44,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="Adresa: "
                     android:textSize="25dp"
+                    android:padding="8dp"
                     android:textColor="@color/primaryBackground"
                     />
 
@@ -59,24 +60,24 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/preparatFarmacieItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/preparatFarmacieItem"
-                android:text="Ofera preparate"
-                android:textSize="25dp"
-                android:textColor="@color/primaryColor"
                 android:layout_below="@id/fial"
-                />
+                android:text="Ofera preparate"
+                android:padding="8dp"
+                android:textColor="@color/primaryColor"
+                android:textSize="25dp" />
 
             <TextView
+                android:id="@+id/naturisteFarmacieItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/naturisteFarmacieItem"
-                android:text="Ofera medicamente naturiste"
-                android:textSize="25dp"
-                android:textColor="@color/alertColor"
                 android:layout_below="@id/preparatFarmacieItem"
-                />
+                android:text="Ofera medicamente naturiste"
+                android:textColor="@color/alertColor"
+                android:padding="8dp"
+                android:textSize="25dp" />
 
         </RelativeLayout>
 

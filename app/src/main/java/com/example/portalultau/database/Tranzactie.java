@@ -22,6 +22,7 @@ public class Tranzactie extends RealmObject {
     private ObjectId idFarmacie;
     @Required
     private ObjectId idClient;
+    private Boolean isExpanded = false;
 
     public Tranzactie(){
 
@@ -114,5 +115,13 @@ public class Tranzactie extends RealmObject {
 
     public void setIdClient(ObjectId idClient) {
         this.idClient = idClient;
+    }
+
+    public Boolean getExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(Boolean expanded) {
+        isExpanded = expanded;
     }
 }

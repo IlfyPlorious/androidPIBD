@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBackground"
+    tools:context=".fragments.additional.EditClient">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editClientHeroLayout"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editeaza client"
+            android:textColor="@color/highlightColor"
+            android:textSize="35dp"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/numeEditTextEditClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editClientHeroLayout"
+        android:hint="Nume Client"
+        android:padding="8dp"
+        android:inputType="textCapWords"
+        android:textColor="@color/highlightColor"
+        android:textColorHint="#afafaf"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/prenumeEditTextEditClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/numeEditTextEditClient"
+        android:hint="Prenume Client"
+        android:inputType="textCapWords"
+        android:padding="8dp"
+        android:textColor="@color/highlightColor"
+        android:textColorHint="#afafaf"
+        android:textSize="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adresaEditTextEditClient"
+        android:inputType="textCapWords"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Adresa"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/prenumeEditTextEditClient"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactEditTextEditClient"
+        android:textColorHint="#afafaf"
+        android:textColor="@color/highlightColor"
+        android:hint="Contact"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_below="@id/adresaEditTextEditClient"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editClientVarstaLayout"
+        android:orientation="horizontal"
+        android:layout_below="@id/contactEditTextEditClient">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Varsta:"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:padding="8dp"/>
+
+        <EditText
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/varstaEditTextEditClient"
+            android:textColorHint="#afafaf"
+            android:textColor="@color/highlightColor"
+            android:hint="0-150"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/editClientVarstaLayout"
+        android:id="@+id/premiumLayout"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Abonament premium:"
+            android:textColor="@color/highlightColor"
+            android:padding="8dp"
+            android:id="@+id/premiumLabelText"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="activ"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/premiumRadioButtonActivEdit"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="inactiv"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:layout_marginStart="24dp"
+                android:id="@+id/premiumRadioButtonInactivEdit"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/editClientButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/premiumLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/secondaryBackground"
+        android:text="salveaza"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryColor" />
+
+</RelativeLayout>
