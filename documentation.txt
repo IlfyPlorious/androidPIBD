@@ -18,7 +18,8 @@
 8. Expanding item in recyclerview
 https://medium.com/@nikola.jakshic/how-to-expand-collapse-items-in-recyclerview-49a648a403a6
 9. how to set app icon with image asset
-	
-
+	10. datepcikr
+	https://www.tutlane.com/tutorial/android/android-datepicker-with-examples
+https://www.tutorialspoint.com/how-to-change-spinner-text-size-and-text-color-in-android-app-using-kotlin
 
 

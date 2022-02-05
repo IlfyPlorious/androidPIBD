@@ -10,8 +10,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.portalultau.database.Client;
+import com.example.portalultau.database.Tranzactie;
 import com.example.portalultau.fragments.Clienti;
 import com.example.portalultau.fragments.Farmacii;
+import com.example.portalultau.fragments.Tranzactii;
 import com.example.portalultau.fragments.additional.AddFarmacie;
 import com.example.portalultau.database.Farmacie;
 import com.example.portalultau.recyclerviews.ClientiRecyclerView;
@@ -36,7 +38,7 @@ import io.realm.mongodb.sync.SyncConfiguration;
     @author Sandu Dragos
  */
 
-public class MainActivity extends AppCompatActivity implements Farmacii.onCRUDFarmacieOperation, Farmacii.farmaciiRealmComm, FarmaciiRecyclerView.farmaciiRecyclerViewButtonControl, ClientiRecyclerView.clientiRecyclerViewButtonControl, Clienti.clientiRealmComm, Clienti.crudClientiOperations {
+public class MainActivity extends AppCompatActivity implements Tranzactii.realmCommTranzactii, Tranzactii.crudTranzactiiOperations, Farmacii.onCRUDFarmacieOperation, Farmacii.farmaciiRealmComm, FarmaciiRecyclerView.farmaciiRecyclerViewButtonControl, ClientiRecyclerView.clientiRecyclerViewButtonControl, Clienti.clientiRealmComm, Clienti.crudClientiOperations {
 
     private BottomNavigationView bottomNav;
     private NavController navController;
@@ -216,5 +218,50 @@ public class MainActivity extends AppCompatActivity implements Farmacii.onCRUDFa
     public ArrayList<Client> citesteClienti() {
         RealmResults<Client> clienti = backgroundThreadRealm.where(Client.class).findAll();
         return new ArrayList<>(clienti);
+    }
+
+    @Override
+    public void insertTranzactie(Tranzactie tranzactie) {
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                transactionRealm.insert(tranzactie);
+            });
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la incarcare in baza de date: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void updateTranzactie(Tranzactie tranzactie) {
+        try{
+            backgroundThreadRealm.executeTransaction(transaction -> {
+                Tranzactie tranzactieToEdit = transaction.where(Tranzactie.class).equalTo("_id", tranzactie.get_id()).findFirst();
+                if ( tranzactieToEdit != null )
+                    tranzactieToEdit.copyTranzactieData(tranzactie.getData(), tranzactie.getSuma(), tranzactie.getProdus(), tranzactie.getTipPlata(), tranzactie.getCantitateProdus(), tranzactie.getIdFarmacie(), tranzactie.getIdClient());
+            });
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void deleteTranzactie(Tranzactie tranzactie) {
+        ObjectId tranzactieId = tranzactie.get_id();
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                Tranzactie toDelete = transactionRealm.where(Tranzactie.class).equalTo("_id", tranzactieId).findFirst();
+                if (toDelete != null)
+                    toDelete.deleteFromRealm();
+            });
+            Toast.makeText(this, "Tranzactia a fost stearsa", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public ArrayList<Tranzactie> citesteTranzactii() {
+        RealmResults<Tranzactie> tranzactii = backgroundThreadRealm.where(Tranzactie.class).findAll();
+        return new ArrayList<>(tranzactii);
     }
 }

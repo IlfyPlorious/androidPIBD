@@ -26,8 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:text="Nume"
                 android:padding="8dp"
+                android:text="Nume"
                 android:textColor="@color/primaryColor"
                 android:textSize="30dp" />
 

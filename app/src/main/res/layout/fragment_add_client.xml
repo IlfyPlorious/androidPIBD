@@ -23,140 +23,142 @@
 
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/numeEditTextAddClient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addClientHeroLayout"
-        android:hint="Nume Client"
-        android:inputType="textCapWords"
-        android:padding="8dp"
-        android:textColor="@color/highlightColor"
-        android:textColorHint="#afafaf"
-        android:textSize="20dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/prenumeEditTextAddClient"
-        android:textColorHint="#afafaf"
-        android:textColor="@color/highlightColor"
-        android:hint="Prenume Client"
-        android:inputType="textCapWords"
-        android:textSize="20dp"
-        android:padding="8dp"
-        android:layout_below="@id/numeEditTextAddClient"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/adresaEditTextAddClient"
-        android:textColorHint="#afafaf"
-        android:textColor="@color/highlightColor"
-        android:inputType="textCapWords"
-        android:hint="Adresa"
-        android:textSize="20dp"
-        android:padding="8dp"
-        android:layout_below="@id/prenumeEditTextAddClient"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/contactEditTextAddClient"
-        android:textColorHint="#afafaf"
-        android:textColor="@color/highlightColor"
-        android:hint="Contact"
-        android:textSize="20dp"
-        android:padding="8dp"
-        android:layout_below="@id/adresaEditTextAddClient"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addClientVarstaLayout"
-        android:orientation="horizontal"
-        android:layout_below="@id/contactEditTextAddClient">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Varsta:"
-            android:textSize="20dp"
-            android:textColor="@color/highlightColor"
-            android:padding="8dp"/>
-
-        <EditText
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/varstaEditTextAddClient"
-            android:textColorHint="#afafaf"
-            android:textColor="@color/highlightColor"
-            android:hint="0-150"
-            android:inputType="number"
-            android:textSize="20dp"
-            android:padding="8dp"
-            android:layout_below="@id/contactEditTextAddClient"
-            />
-
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/addClientVarstaLayout"
-        android:id="@+id/premiumLayout"
+        android:layout_below="@id/addClientHeroLayout"
+        android:id="@+id/contentLayout"
         android:padding="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Abonament premium:"
-            android:textColor="@color/highlightColor"
-            android:padding="8dp"
-            android:id="@+id/premiumLabelText"/>
-
-        <RadioGroup
+        <EditText
+            android:id="@+id/numeEditTextAddClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:hint="Nume Client"
+            android:inputType="textCapWords"
             android:padding="8dp"
-            >
+            android:textColor="@color/highlightColor"
+            android:textColorHint="#afafaf"
+            android:textSize="20dp" />
 
-            <RadioButton
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/prenumeEditTextAddClient"
+            android:textColorHint="#afafaf"
+            android:textColor="@color/highlightColor"
+            android:hint="Prenume Client"
+            android:inputType="textCapWords"
+            android:textSize="20dp"
+            android:padding="8dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/adresaEditTextAddClient"
+            android:textColorHint="#afafaf"
+            android:textColor="@color/highlightColor"
+            android:inputType="textCapWords"
+            android:hint="Adresa"
+            android:textSize="20dp"
+            android:padding="8dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/contactEditTextAddClient"
+            android:textColorHint="#afafaf"
+            android:textColor="@color/highlightColor"
+            android:hint="Contact"
+            android:textSize="20dp"
+            android:padding="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/addClientVarstaLayout"
+            android:orientation="horizontal">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="activ"
-                android:textColor="@color/highlightColor"
+                android:text="Varsta:"
                 android:textSize="20dp"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:id="@+id/premiumRadioButtonActiv"
+                android:textColor="@color/highlightColor"
+                android:padding="8dp"/>
+
+            <EditText
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/varstaEditTextAddClient"
+                android:textColorHint="#afafaf"
+                android:textColor="@color/highlightColor"
+                android:hint="0-150"
+                android:inputType="number"
+                android:textSize="20dp"
+                android:padding="8dp"
                 />
 
-            <RadioButton
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/premiumLayout"
+            android:padding="8dp">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="inactiv"
-                android:textColor="@color/highlightColor"
                 android:textSize="20dp"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_marginStart="24dp"
-                android:id="@+id/premiumRadioButtonInactiv"
-                />
-        </RadioGroup>
+                android:text="Abonament premium:"
+                android:textColor="@color/highlightColor"
+                android:padding="8dp"
+                android:id="@+id/premiumLabelText"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="activ"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:id="@+id/premiumRadioButtonActiv"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="inactiv"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginStart="24dp"
+                    android:id="@+id/premiumRadioButtonInactiv"
+                    />
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/addClientButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/premiumLayout"
+        android:layout_below="@id/contentLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/secondaryBackground"

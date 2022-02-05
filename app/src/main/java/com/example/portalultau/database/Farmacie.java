@@ -1,5 +1,7 @@
 package com.example.portalultau.database;
 
+import androidx.annotation.NonNull;
+
 import org.bson.types.ObjectId;
 
 import io.realm.RealmObject;
@@ -103,4 +105,9 @@ public class Farmacie extends RealmObject {
         this.medicamenteNaturiste = medicamenteNaturiste;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nume;
+    }
 }

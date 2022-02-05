@@ -1,5 +1,7 @@
 package com.example.portalultau.database;
 
+import androidx.annotation.NonNull;
+
 import org.bson.types.ObjectId;
 
 import io.realm.RealmObject;
@@ -29,28 +31,17 @@ public class Tranzactie extends RealmObject {
     }
 
     public Tranzactie(String data, float suma, String produs, String tipPlata, String cantitateProdus, ObjectId idFarmacie, ObjectId idClient) {
-        if (validateData(data)) this.data = data;
-        else throw new IllegalArgumentException("Format data invalid");
+        if (data != null && !data.equals("")) this.data = data;
+        else throw new IllegalArgumentException("Va rog selectati data");
         this.suma = suma;
-        if(validateStringBlock(produs))
         this.produs = produs;
-        else throw new IllegalArgumentException("Nume produs invalid");
-        this.tipPlata = tipPlata;
-        this.cantitateProdus = cantitateProdus;
+        if (tipPlata != null && !tipPlata.equals(""))
+            this.tipPlata = tipPlata;
+        else throw new IllegalArgumentException("Va rog selectati tipul de plata");
+        if (cantitateProdus != null && !cantitateProdus.equals("")) this.cantitateProdus = cantitateProdus;
+        else throw new IllegalArgumentException("Va rog sa introduceti cantitatea");
         this.idFarmacie = idFarmacie;
         this.idClient = idClient;
-    }
-
-    private boolean validateStringBlock(String block){
-        if(block.length() < 3 ) return false;
-        else return true;
-    }
-    private boolean validateData(String data){
-        //de modificat in functie de metoda de input
-
-        String[] dataSplit = data.split(".");
-        if( dataSplit[0].length() != 2 ) return false;
-        return true;
     }
 
     public ObjectId get_id() {
@@ -123,5 +114,21 @@ public class Tranzactie extends RealmObject {
 
     public void setExpanded(Boolean expanded) {
         isExpanded = expanded;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Tranzactie nr. " + this._id.toString();
+    }
+
+    public void copyTranzactieData(String data, float suma, String produs, String tipPlata, String cantitateProdus, ObjectId idFarmacie, ObjectId idClient){
+        this.data = data;
+        this.suma = suma;
+        this.produs = produs;
+        this.tipPlata = tipPlata;
+        this.cantitateProdus = cantitateProdus;
+        this.idFarmacie = idFarmacie;
+        this.idClient = idClient;
     }
 }

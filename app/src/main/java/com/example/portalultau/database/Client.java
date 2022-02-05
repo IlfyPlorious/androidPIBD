@@ -1,5 +1,7 @@
 package com.example.portalultau.database;
 
+import androidx.annotation.NonNull;
+
 import org.bson.types.ObjectId;
 
 import io.realm.RealmObject;
@@ -138,5 +140,11 @@ public class Client extends RealmObject {
         this.contact = contact;
         this.varsta = varsta;
         this.abonamentPremium = abonamentPremium;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nume + " " + this.prenume;
     }
 }

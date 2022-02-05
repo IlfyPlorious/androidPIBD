@@ -38,7 +38,11 @@
         android:id="@+id/tranzactiiFrag"
         android:name="com.example.portalultau.fragments.Tranzactii"
         android:label="fragment_tranzactii"
-        tools:layout="@layout/fragment_tranzactii" />
+        tools:layout="@layout/fragment_tranzactii" >
+        <action
+            android:id="@+id/action_tranzactiiFrag_to_addTranzactie"
+            app:destination="@id/addTranzactie" />
+    </fragment>
     <fragment
         android:id="@+id/addFarmacie"
         android:name="com.example.portalultau.fragments.additional.AddFarmacie"
@@ -74,5 +78,14 @@
         <action
             android:id="@+id/action_editClient_to_clientiFrag"
             app:destination="@id/clientiFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTranzactie"
+        android:name="com.example.portalultau.fragments.additional.AddTranzactie"
+        android:label="fragment_add_tranzactie"
+        tools:layout="@layout/fragment_add_tranzactie" >
+        <action
+            android:id="@+id/action_addTranzactie_to_tranzactiiFrag"
+            app:destination="@id/tranzactiiFrag" />
     </fragment>
 </navigation>
