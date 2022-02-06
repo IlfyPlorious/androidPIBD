@@ -2,6 +2,7 @@ package com.example.portalultau.recyclerviews;
 
 import android.app.Activity;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.portalultau.R;
@@ -34,6 +37,7 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
     private List<Farmacie> listaFarmacii;
     private List<Client> listaClienti;
     private Tranzactii.crudTranzactiiOperations crudTranzactiiOperations;
+    private NavController navController;
 
     public TranzactiiRecyclerView(ArrayList<Tranzactie> dataSet, ArrayList<Farmacie> listaFarmacii, ArrayList<Client> listaClienti, Activity activity){
         localDataSet = dataSet;
@@ -41,6 +45,7 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
         this.listaClienti = listaClienti;
         this.listaFarmacii = listaFarmacii;
         crudTranzactiiOperations = (Tranzactii.crudTranzactiiOperations) activity;
+        navController = Navigation.findNavController(activity, R.id.fragmentContainer);
     }
 
     @NonNull
@@ -72,6 +77,15 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
                 localDataSet.remove(holderPosition);
                 notifyItemRemoved(holderPosition);
                 notifyItemRangeChanged(holderPosition, localDataSet.size());
+            }
+        });
+
+        holder.vizualizeaza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle arguments = new Bundle();
+                populateArguments(arguments, client, farmacie, localDataSet.get(holder.getAdapterPosition()));
+                navController.navigate(R.id.action_tranzactiiFrag_to_vizualizeazaTranzactie, arguments);
             }
         });
     }
@@ -145,7 +159,9 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
         getClientList = listaClienti.stream().filter(client1 -> client1.get_id().equals(tranzactie.getIdClient()))
                 .collect(Collectors.toList());
 
-        client = getClientList.get(0);
+        if (getClientList.size() != 0)
+            client = getClientList.get(0);
+        else client = new Client("client sters", "client sters", "client sters", "client sters", 1, false);
 
         return client;
     }
@@ -158,7 +174,9 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
         getFarmacieList = listaFarmacii.stream().filter(farmacie1 -> farmacie1.getId().equals(tranzactie.getIdFarmacie()))
                 .collect(Collectors.toList());
 
+        if (getFarmacieList.size() != 0 )
         farmacie = getFarmacieList.get(0);
+        else farmacie = new Farmacie("farmacie stearsa", "farmacie stearsa", false, false);
 
         return farmacie;
     }
@@ -169,5 +187,18 @@ public class TranzactiiRecyclerView extends RecyclerView.Adapter<TranzactiiRecyc
         localDataSet.clear();
         localDataSet.addAll(fullDataSet);
         notifyDataSetChanged();
+    }
+
+    private void populateArguments(Bundle arguments, Client client, Farmacie farmacie, Tranzactie tranzactie){
+        arguments.putString("id", tranzactie.get_id().toString());
+        arguments.putString("numeClient", client.getNume() + " " + client.getPrenume());
+        arguments.putString("contactClient", client.getContact());
+        arguments.putString("farmacie", farmacie.getNume());
+        arguments.putString("adresaFarmacie", farmacie.getAdresa());
+        arguments.putString("produs", tranzactie.getProdus());
+        arguments.putString("cantitate", tranzactie.getCantitateProdus());
+        arguments.putFloat("suma", tranzactie.getSuma());
+        arguments.putString("tipPlata", tranzactie.getTipPlata());
+        arguments.putString("data", tranzactie.getData());
     }
 }

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBackground"
+    tools:context=".fragments.additional.EditeazaTranzactie">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTranzactieHeroLayout"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editeaza tranzactie"
+            android:textColor="@color/highlightColor"
+            android:textSize="35dp"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contentEditTranzactieLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTranzactieHeroLayout"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Client:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/clientSpinnerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/primaryColor"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@color/primaryBackground"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Farmacie:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/farmacieSpinnerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/primaryColor"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@color/primaryBackground"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Produs:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/produsSpinnerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/primaryColor"
+                android:dropDownWidth="match_parent"
+                android:popupBackground="@color/primaryBackground"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cantitate:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/cantitateEditTranzactie"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="0"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="@color/highlightColor"
+                android:textColorHint="#cccccc"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sumaEditTranzactie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="9dp"
+            android:text="Suma: 0 lei"
+            android:textColor="@color/highlightColor"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tip de plata:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <RadioButton
+                    android:id="@+id/tipDePlataCardEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:text="card"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/tipDePlataNumerarEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:text="numerar"
+                    android:textColor="@color/highlightColor"
+                    android:textSize="20dp" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data:"
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/dataEditTranzactie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="click to pick date"
+                android:textColor="@color/highlightColor"
+                android:textColorHint="#cccccc" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/editTranzactieBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contentEditTranzactieLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/secondaryBackground"
+        android:text="Salveaza"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryColor" />
+
+</RelativeLayout>

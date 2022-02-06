@@ -1,6 +1,8 @@
 package com.example.portalultau.recyclerviews;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.opengl.Visibility;
 import android.util.Log;
@@ -26,10 +28,12 @@ public class ClientiRecyclerView extends RecyclerView.Adapter<ClientiRecyclerVie
     private ArrayList<Client> fullDataSet;
     private clientiRecyclerViewButtonControl buttonControl;
     private Clienti.crudClientiOperations crudOp;
+    private Activity activity;
 
     public interface clientiRecyclerViewButtonControl{
         void editClient(Client client);
         void updateExpand(Client client);
+        void stergeTranzactiiPtClient(Client client);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +69,7 @@ public class ClientiRecyclerView extends RecyclerView.Adapter<ClientiRecyclerVie
         fullDataSet = new ArrayList<>(dataSet);
         buttonControl = (clientiRecyclerViewButtonControl) activity;
         crudOp = (Clienti.crudClientiOperations) activity;
+        this.activity = activity;
     }
 
     @Override
@@ -100,17 +105,50 @@ public class ClientiRecyclerView extends RecyclerView.Adapter<ClientiRecyclerVie
         });
 
         viewHolder.deleteButton.setOnClickListener(view -> {
-            fullDataSet.remove(localDataSet.get(position));
-            crudOp.deleteClient(localDataSet.get(position));
-            localDataSet.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, localDataSet.size());
+            createDialogForTranzactii(localDataSet.get(position), position);
         });
 
         viewHolder.editButton.setOnClickListener(view -> {
             buttonControl.editClient(localDataSet.get(position));
         });
 
+    }
+
+    private void createDialogForTranzactii(Client client, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setPositiveButton("Sterge tranzactiile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                buttonControl.stergeTranzactiiPtClient(client);
+                fullDataSet.remove(localDataSet.get(position));
+                crudOp.deleteClient(localDataSet.get(position));
+                localDataSet.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, localDataSet.size());
+            }
+        });
+        builder.setNegativeButton("Pastreaza tranzactiile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                fullDataSet.remove(localDataSet.get(position));
+                crudOp.deleteClient(localDataSet.get(position));
+                localDataSet.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, localDataSet.size());
+            }
+        });
+
+        builder.setNeutralButton("Anuleaza", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        builder.setMessage("Doriti sa stergeti si tranzactiile asociate clientului " + client.getNume() + " " + client.getPrenume() + "?");
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

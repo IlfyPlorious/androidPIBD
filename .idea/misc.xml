@@ -9,13 +9,17 @@
         <entry key="app/src/main/res/layout/farmacie_item.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_add_client.xml" value="0.29473684210526313" />
         <entry key="app/src/main/res/layout/fragment_add_farmacie.xml" value="0.35" />
-        <entry key="app/src/main/res/layout/fragment_add_tranzactie.xml" value="0.29473684210526313" />
+        <entry key="app/src/main/res/layout/fragment_add_tranzactie.xml" value="0.33421052631578946" />
         <entry key="app/src/main/res/layout/fragment_clienti.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_edit_client.xml" value="0.29473684210526313" />
         <entry key="app/src/main/res/layout/fragment_edit_farmacie.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/fragment_editeaza_tranzactie.xml" value="0.18464912280701753" />
         <entry key="app/src/main/res/layout/fragment_farmacii.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_tranzactii.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/fragment_v_izualizeaza_farmacie.xml" value="0.29473684210526313" />
+        <entry key="app/src/main/res/layout/fragment_vizualizeaza_farmacie.xml" value="0.29473684210526313" />
+        <entry key="app/src/main/res/layout/fragment_vizualizeaza_tranzactie.xml" value="0.29473684210526313" />
         <entry key="app/src/main/res/layout/spinne_item.xml" value="0.1850877192982456" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.1850877192982456" />
         <entry key="app/src/main/res/layout/tranzactii_item.xml" value="0.29473684210526313" />

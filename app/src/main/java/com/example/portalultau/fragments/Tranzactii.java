@@ -165,6 +165,7 @@ public class Tranzactii extends Fragment {
         void insertTranzactie(Tranzactie tranzactie);
         void updateTranzactie(Tranzactie tranzactie);
         void deleteTranzactie(Tranzactie tranzactie);
+        Tranzactie getTranzactie(String id);
     }
 
     public interface realmCommTranzactii{

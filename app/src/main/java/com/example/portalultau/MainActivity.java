@@ -150,6 +150,20 @@ public class MainActivity extends AppCompatActivity implements Tranzactii.realmC
     }
 
     @Override
+    public void stergeTranzactiePtFarmacie(Farmacie farmacie) {
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                RealmResults<Tranzactie> toDelete = transactionRealm.where(Tranzactie.class).equalTo("idFarmacie", farmacie.getId()).findAll();
+                if (toDelete != null)
+                    toDelete.deleteAllFromRealm();
+            });
+            Toast.makeText(this, "Tranzactiile au fost sterse", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void insertClient(Client client) {
         try{
             backgroundThreadRealm.executeTransaction(transactionRealm -> {
@@ -215,8 +229,22 @@ public class MainActivity extends AppCompatActivity implements Tranzactii.realmC
     }
 
     @Override
+    public void stergeTranzactiiPtClient(Client client) {
+        try{
+            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                RealmResults<Tranzactie> toDelete = transactionRealm.where(Tranzactie.class).equalTo("idClient", client.get_id()).findAll();
+                if (toDelete != null)
+                    toDelete.deleteAllFromRealm();
+            });
+            Toast.makeText(this, "Tranzactiile au fost sterse", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public ArrayList<Client> citesteClienti() {
-        RealmResults<Client> clienti = backgroundThreadRealm.where(Client.class).findAll();
+        RealmResults<Client> clienti = backgroundThreadRealm.where(Client.class).findAll().sort("nume");
         return new ArrayList<>(clienti);
     }
 
@@ -257,6 +285,14 @@ public class MainActivity extends AppCompatActivity implements Tranzactii.realmC
         } catch (Exception e){
             Toast.makeText(this, "Eroare la baza de date: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public Tranzactie getTranzactie(String id) {
+        Tranzactie tranzactie;
+        ObjectId idTranz = new ObjectId(id);
+        tranzactie = backgroundThreadRealm.where(Tranzactie.class).equalTo("_id", idTranz).findFirst();
+        return tranzactie;
     }
 
     @Override

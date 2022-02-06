@@ -1,7 +1,9 @@
 package com.example.portalultau.recyclerviews;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -22,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.portalultau.R;
+import com.example.portalultau.database.Client;
 import com.example.portalultau.database.Farmacie;
 import com.example.portalultau.fragments.Farmacii;
 import com.example.portalultau.fragments.additional.AddFarmacie;
@@ -36,9 +39,11 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
     private ArrayList<Farmacie> fullDataSet;
     private farmaciiRecyclerViewButtonControl buttonControl;
     private Farmacii.onCRUDFarmacieOperation crudOp;
+    private Activity activity;
 
     public interface farmaciiRecyclerViewButtonControl{
         void editFarmacie(Farmacie farmacie);
+        void stergeTranzactiePtFarmacie(Farmacie farmacie);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,6 +68,7 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
         fullDataSet = new ArrayList<>(dataSet);
         buttonControl = (farmaciiRecyclerViewButtonControl) activity;
         crudOp = (Farmacii.onCRUDFarmacieOperation) activity;
+        this.activity = activity;
     }
 
     @Override
@@ -79,11 +85,7 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
         viewHolder.nume.setText(localDataSet.get(position).getNume());
         viewHolder.adresa.setText(localDataSet.get(position).getAdresa());
         viewHolder.deleteButton.setOnClickListener(view -> {
-            fullDataSet.remove(localDataSet.get(position));
-            crudOp.deleteFarmacie(localDataSet.get(position));
-            localDataSet.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, localDataSet.size());
+            createDialogForTranzactii(localDataSet.get(position), position);
         });
 
         viewHolder.editButton.setOnClickListener(view -> {
@@ -107,6 +109,43 @@ public class FarmaciiRecyclerView extends RecyclerView.Adapter<FarmaciiRecyclerV
             viewHolder.naturiste.setTextColor(Color.parseColor("#ffbb00"));
             viewHolder.naturiste.setText("Nu ofera medicamente naturiste");
         }
+    }
+
+    private void createDialogForTranzactii(Farmacie farmacie, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setPositiveButton("Sterge tranzactiile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                buttonControl.stergeTranzactiePtFarmacie(farmacie);
+                fullDataSet.remove(localDataSet.get(position));
+                crudOp.deleteFarmacie(localDataSet.get(position));
+                localDataSet.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, localDataSet.size());
+            }
+        });
+        builder.setNegativeButton("Pastreaza tranzactiile", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                fullDataSet.remove(localDataSet.get(position));
+                crudOp.deleteFarmacie(localDataSet.get(position));
+                localDataSet.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, localDataSet.size());
+            }
+        });
+
+        builder.setNeutralButton("Anuleaza", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        builder.setMessage("Doriti sa stergeti si tranzactiile asociate farmaciei " + farmacie.getNume());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

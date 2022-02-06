@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_tranzactiiFrag_to_addTranzactie"
             app:destination="@id/addTranzactie" />
+        <action
+            android:id="@+id/action_tranzactiiFrag_to_vizualizeazaTranzactie"
+            app:destination="@id/vizualizeazaTranzactie" />
     </fragment>
     <fragment
         android:id="@+id/addFarmacie"
@@ -86,6 +89,27 @@
         tools:layout="@layout/fragment_add_tranzactie" >
         <action
             android:id="@+id/action_addTranzactie_to_tranzactiiFrag"
+            app:destination="@id/tranzactiiFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/vizualizeazaTranzactie"
+        android:name="com.example.portalultau.fragments.additional.VizualizeazaTranzactie"
+        android:label="fragment_vizualizeaza_farmacie"
+        tools:layout="@layout/fragment_vizualizeaza_tranzactie" >
+        <action
+            android:id="@+id/action_vizualizeazaTranzactie_to_tranzactiiFrag"
+            app:destination="@id/tranzactiiFrag" />
+        <action
+            android:id="@+id/action_vizualizeazaTranzactie_to_editeazaTranzactie"
+            app:destination="@id/editeazaTranzactie" />
+    </fragment>
+    <fragment
+        android:id="@+id/editeazaTranzactie"
+        android:name="com.example.portalultau.fragments.additional.EditeazaTranzactie"
+        android:label="fragment_editeaza_tranzactie"
+        tools:layout="@layout/fragment_editeaza_tranzactie" >
+        <action
+            android:id="@+id/action_editeazaTranzactie_to_tranzactiiFrag"
             app:destination="@id/tranzactiiFrag" />
     </fragment>
 </navigation>

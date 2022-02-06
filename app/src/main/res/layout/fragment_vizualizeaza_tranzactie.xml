@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryBackground"
+    tools:context=".fragments.additional.VizualizeazaTranzactie">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vizTranzHeroLayout"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalii Tranzactie"
+            android:textColor="@color/highlightColor"
+            android:textSize="35dp"
+            android:padding="8dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_below="@id/vizTranzHeroLayout"
+        android:id="@+id/vizTranzContentLayout"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/highlightColor"
+            android:text="Tranzactie nr."
+            android:padding="8dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textColor="@color/highlightColor"
+            android:text="id tranzactie"
+            android:padding="8dp"
+            android:id="@+id/idTranzactieDetalii"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Client:"
+            android:id="@+id/clientDetalii"
+            android:padding="8dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Contact client:"
+            android:id="@+id/contactClientDetalii"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Farmacie:"
+            android:id="@+id/farmacieDetalii"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Adresa farmacie:"
+            android:id="@+id/adresaFarmacieDetalii"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Produs: tip produs x cantitate"
+            android:id="@+id/produsXcantitateDetalii"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Suma totala:"
+            android:id="@+id/sumaDetalii"
+            android:padding="8dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tipPlataDetalii"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="Tip de plata: "
+                android:textColor="@color/highlightColor"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/card"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/imgTipPlataDetalii"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/highlightColor"
+            android:text="Data:"
+            android:id="@+id/dataDetalii"
+            android:padding="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_below="@id/vizTranzContentLayout"
+        android:layout_marginTop="30dp"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="editeaza"
+            android:id="@+id/editeazaButtonDetalii"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/secondaryBackground"
+            android:textColor="@color/primaryColor"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="inchide"
+            android:id="@+id/inchideButtonDetalii"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/secondaryBackground"
+            android:textColor="@color/primaryColor"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
